@@ -40,5 +40,10 @@ func AsciiArt(banner string, fontStr string) (string, error) {
 		argsArr = argsArr[:larg-1]
 	}
 
+	var resultString string
+	for _, element := range arr {
+		resultString += element
+	}
+
 	return asciiartfs.PrintBanners(argsArr, arr), nil
 }

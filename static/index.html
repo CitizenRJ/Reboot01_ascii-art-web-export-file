@@ -3,7 +3,23 @@
 
 <head>
     <title> </title>
-    <link rel="stylesheet" href="/w.css">
+    <link rel="stylesheet" href="w.css">
+    <script>
+        function downloadFile(asciiArt) {
+            var blob = new Blob([asciiArt], { type: "text/plain" });
+            var url = URL.createObjectURL(blob);
+
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "ascii-art.txt";
+
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </head>
 
 <body>
@@ -23,8 +39,8 @@
             </select>
         </div>
 
-        <div class="b">
-            <input type="submit" value="Click for Magic!">
+        <div class="submit">
+            <input type="submit" value="Click for Magic!"> <input type="submit" name="downloadText" value="download" onclick="downloadFile('{{ .Art }}')">
         </div>
     </form>
 

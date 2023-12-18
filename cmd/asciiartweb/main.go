@@ -91,6 +91,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		fonts := Fonts{Art: art, Hidden: "false"}
+
 		parsedTemplate, err := template.ParseFiles("../../static/index.html")
 		if err != nil {
 			log.Println("Error executing template :", err)
@@ -105,9 +106,24 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func downloadHandler(w http.ResponseWriter, r *http.Request) {
+	downloadButton := r.FormValue("downloadText")
+	if downloadButton == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		parsedTemplate, _ := template.ParseFiles("../../static/400.html")
+		parsedTemplate.Execute(w, nil)
+		return
+	}
+
+	w.Header().Set("Content-Disposition", "attachment; filename=ascii-art.txt")
+	w.Header().Set("Content-Type", "text/plain")
+	w.Write([]byte(downloadButton))
+}
+
 func main() {
 	http.HandleFunc("/", printHandler)
 	http.HandleFunc("/ascii-art", formHandler)
+	http.HandleFunc("/download", downloadHandler)
 	http.HandleFunc("/w.css", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "../../static/w.css")
 	})

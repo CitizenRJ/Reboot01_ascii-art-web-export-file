@@ -1,6 +1,10 @@
 package asciiartfs
 
-import "strings"
+import (
+	// "bytes"
+	// "fmt"
+	"strings"
+)
 
 // Print the full outcome
 func PrintBanners(banners, arr []string) string {
@@ -25,5 +29,18 @@ func PrintBanners(banners, arr []string) string {
 			lines = append(lines, line.String())
 		}
 	}
+
+	// var buffer bytes.Buffer
+	// var result string
+
+	// for _, str := range lines {
+	// 	result += str
+	// }
+
+	// buff := buffer.WriteString(result)
+	// buff2 := string(buff)
+
+	// fmt.Println(buff)
+	
 	return strings.Join(lines, "\n")
 }
