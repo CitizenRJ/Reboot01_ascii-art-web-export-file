@@ -5,8 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-
-	// "os"
 	"asciiartweb/internal/asciiart"
 	"asciiartweb/internal/asciiartfs"
 )
