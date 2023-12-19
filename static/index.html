@@ -4,7 +4,7 @@
 <head>
     <title> </title>
     <link rel="stylesheet" href="w.css">
-    <script>
+    <!-- <script>
         function downloadFile(asciiArt) {
             var blob = new Blob([asciiArt], { type: "text/plain" });
             var url = URL.createObjectURL(blob);
@@ -19,7 +19,7 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -40,10 +40,10 @@
         </div>
 
         <div class="submit">
-            <input type="submit" value="Click for Magic!"> <input type="submit" name="downloadText" value="download" onclick="downloadFile('{{ .Art }}')">
+            <input type="submit" value="Click for Magic!"> 
+            <button type="submit" formaction="/download" name="downloadText" value="{{ .Art }}">download</button>
         </div>
     </form>
-
 
     <section>
         <pre>{{ .Art }}</pre>
